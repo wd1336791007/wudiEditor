@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="editor.js"></script>
+    <style>
+        *{margin:0;padding:0;outline:none;}
+        .box{
+            width:800px;
+            margin:0 auto;
+        }
+        select,input,textarea{outline:none;border:1px solid #999;resize:none;}
+        a{cursor:pointer;}
+        .editor-box{
+            position:relative;
+            min-width:520px;
+            border:1px solid #999;
+        }
+        .editor-title{
+            padding:10px;
+        }
+        .editor-btn{
+            position: relative;
+            display: inline-block;
+            vertical-align:top;
+            width:22px;
+            height:22px;
+            box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            border:1px solid transparent;
+        }
+        .editor-btn:hover{
+            border:1px solid #999;
+        }
+        .editor-icons{
+            background:url('images/icons.png') no-repeat;
+        }
+        .editor-bold{background-position:0 0;}
+        .editor-italic{background-position:-60px 0;}
+        .editor-underline{background-position:-140px 0;}
+        .editor-strikethrough{background-position:-120px 0;}
+        .editor-superscript{background-position:-620px 0;}
+        .editor-subscript{background-position:-600px 0;}
+        .editor-forecolor{background-position:-720px 0;}
+        .editor-backcolor{background-position:-760px 0;}
+        .editor-removeformat{background-position:-580px 0;}
+        .editor-justifyleft{background-position:-460px 0;}
+        .editor-justifycenter{background-position:-420px 0;}
+        .editor-justifyright{background-position:-480px 0;}
+        .editor-default{background-position:-400px 0;}
+        .editor-addLink{background-position:-500px 0;}
+        .editor-deletLink{background-position:-640px 0;}
+
+        .editor-select-box{
+            display:inline-block;
+            vertical-align:top;
+            position:relative;
+        }
+        .editor-select{
+            font-size:14px;
+            min-width:85px;
+            _width:85px;
+            min-height:22px;
+            _height:22px;
+            margin-left:5px;
+        }
+        .editor-content{
+            padding:10px;
+            box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            border-top:1px solid #999;
+        }
+        .editor-body{
+            outline:none;
+        }
+        .editor-link{
+            width:60%;
+            height:160px;
+            padding:10px;
+            box-shadow:0 0 20px #636363,0 0 5px #f0f0f0 inset;
+            -webkit-box-shadow:0 0 20px #636363,0 0 5px #f0f0f0 inset;
+            -moz-box-shadow:0 0 20px #636363,0 0 5px #f0f0f0 inset;
+            position:absolute;
+            top:0;left:0;right:0;
+            bottom:0;margin:45px auto auto;
+            background:#fff;
+            font-size:14px;
+            transition:all 0.5s linear;
+            -webkit-transition:all 0.5s linear;
+            -moz-transition:all 0.5s linear;
+            opacity:0;
+            filter:alpha(opacity=0);
+            z-index:-2;
+        }
+        .editor-link span,.editor-link input{
+            display:block;
+            width:80%;
+            padding:7px 5px;
+            margin:0 auto;
+        }
+        .editor-link-text{
+            border:1px solid #999;
+        }
+        .editor-link-btn{
+            padding:10px 10%;
+            text-align:right;
+        }
+        .editor-link-btn input{
+            display:inline-block;
+            vertical-align:middle;
+            width:50px;
+            height:30px;
+            text-align:center;
+            background:#f00;
+            color:#fff;
+            margin:0 5px;
+            border:0 none;
+            cursor:pointer;
+            overflow-x:hidden;
+        }
+        .fontColor{
+            width:190px;
+            position:absolute;
+            top:22px;left:0;
+            border:1px solid #fafafa;
+            z-index:-3;
+            display:none;
+            background: #fafafa;
+        }
+        .parent-box{
+            display:inline-block;
+            vertical-align:middle;
+            position:relative;
+        }
+        .parent-box:hover .fontColor{
+            display:block;
+            z-index:999;
+        }
+        .fontColor input{
+            display:block;
+            float:left;
+            width:15px;
+            height:15px;
+            background:#000;
+            border:0 none;
+            margin:2px;
+            cursor:pointer;
+        }
+    </style>
+    <style>
+        .button{
+            display:block;
+            width: 150px;
+            height:35px;
+            background:green;
+            color:#fff;
+            border:none;
+            margin:10px auto;
+        }
+        .val{
+            width:800px;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="box">
+    <textarea id="editor"></textarea>
+</div>
+
+<input class="button" type="button" value="获取带样式内容" id="btn">
+<div class="val" id="html"></div>
+<input class="button" type="button" value="获取纯文本内容" id="btn2">
+<div class="val" id="text"></div>
+<script>
+
+    window.onload = function(){
+        var editor = new UE.Editor('editor');  // 传入要被实例替换的id名
+        var btn = UE.getElement('#btn',document);
+        var html = UE.getElement('#html',document);
+        var btn2 = UE.getElement('#btn2',document);
+        var text = UE.getElement('#text',document);
+        
+        btn.onclick = function(){
+            html.innerHTML = editor.getContent;
+        };
+        btn2.onclick = function(){
+            text.innerText = editor.getContentTxt();
+        };
+        var editorBody = document.getElementsByClassName('editor-body')[0];
+    };
+</script>
+</body>
+</html>
